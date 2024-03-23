@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, updateDoc } from "firebase/firestore";
-import { config } from 'dotenv';
+import {initializeApp} from "firebase/app";
+import {getFirestore, doc, updateDoc} from "firebase/firestore";
+import {config} from 'dotenv';
 
 config();
 
@@ -22,7 +22,7 @@ async function updateQuestionScore(assignmentId, questionId, newScore) {
     const questionRef = doc(db, 'assignments', assignmentId, 'questions', questionId);
 
     let score = null;
-    if (newScore !== -1){
+    if (newScore !== -1) {
         score = Number(newScore);
     }
 
@@ -35,4 +35,4 @@ async function updateQuestionScore(assignmentId, questionId, newScore) {
     }
 }
 
-export { updateQuestionScore };
+export {updateQuestionScore};

@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { config } from 'dotenv';
+import {initializeApp} from "firebase/app";
+import {getFirestore, collection, doc, getDoc, getDocs} from "firebase/firestore";
+import {config} from 'dotenv';
 
 config();
 
@@ -50,4 +50,4 @@ async function getAssignmentWithQuestions(assignmentId) {
     return assignment;
 }
 
-export { getAssignmentWithQuestions };
+export {getAssignmentWithQuestions};
