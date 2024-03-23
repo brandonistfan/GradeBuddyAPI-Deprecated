@@ -1,15 +1,13 @@
-const OpenAI = require('openai').default;
-const dotenv = require('dotenv');
-const { getAssignmentWithQuestions } = require('./read_data.js');
-dotenv.config();
+import OpenAI from "openai";
+import { config } from 'dotenv';
+import { getAssignmentWithQuestions } from './read_data.js';
 
+config();
 const OpenaiApiKey = process.env.GRADEBUDDY_OPENAI_API_KEY;
 const openai = new OpenAI({apiKey: OpenaiApiKey});
 
 async function main(assignmentID) {
     const assignment = await getAssignmentWithQuestions(assignmentID);
-    
-    // for questions in questions try each question here
 
     for (const question of assignment.questions){
         try {
@@ -30,6 +28,7 @@ async function main(assignmentID) {
                 messages: [{ role: "system", content: prompt }],
                 model: "gpt-4-1106-preview",
                 max_tokens: maxTokens,
+                temperature: 0,
             });
 
             console.log(completion.choices[0].message['content']);
@@ -39,6 +38,7 @@ async function main(assignmentID) {
             // send error to firebase database for specific question
         }
     }
+    return 0;
 }
 
-main("eBoTg6SI96sbRCB1Qcvv");
+main("REYUvIEh0Mc2zEjdvYRs");
