@@ -1,9 +1,21 @@
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-const { getFirestore } = require('firebase-admin/firestore');
+const firebase = require("firebase/app");
+require("firebase/firestore");
 
-initializeApp();
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCB-oz8W7o4OUDcjSVac2hIEVGBr1YSKeo",
+    authDomain: "gradebuddy-hoohacks.firebaseapp.com",
+    projectId: "gradebuddy-hoohacks",
+    storageBucket: "gradebuddy-hoohacks.appspot.com",
+    messagingSenderId: "843512705843",
+    appId: "1:843512705843:web:1ac2927d3c682d828bc446"
+};
 
-const db = getFirestore();
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Get a Firestore instance
+const db = firebase.firestore();
 
 // Function to get an assignment with its questions
 async function getAssignmentWithQuestions(assignmentId) {
