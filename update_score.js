@@ -1,8 +1,13 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { getFirestore, doc, updateDoc } from "firebase/firestore";
+import { config } from 'dotenv';
+
+config();
+
+const firebaseApiKey = process.env.FIREBASE_API_KEY;
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCB-oz8W7o4OUDcjSVac2hIEVGBr1YSKeo",
+    apiKey: firebaseApiKey,
     authDomain: "gradebuddy-hoohacks.firebaseapp.com",
     projectId: "gradebuddy-hoohacks",
     storageBucket: "gradebuddy-hoohacks.appspot.com",
@@ -11,19 +16,22 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
 
 async function updateQuestionScore(assignmentId, questionId, newScore) {
-    const questionRef = db.collection('assignments').doc(assignmentId).collection('questions').doc(questionId);
+    const questionRef = doc(db, 'assignments', assignmentId, 'questions', questionId);
+
+    let score = null;
+    if (newScore !== -1){
+        score = Number(newScore);
+    }
 
     try {
-        await questionRef.update({
-            score: newScore
+        await updateDoc(questionRef, {
+            score: score
         });
-        console.log(`Score updated to ${newScore} for question ID ${questionId} in assignment ID ${assignmentId}`);
     } catch (error) {
-        console.error('Error updating question score:', error);
+
     }
 }
 

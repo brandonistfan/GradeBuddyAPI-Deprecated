@@ -1,8 +1,13 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { config } from 'dotenv';
+
+config();
+
+const firebaseApiKey = process.env.FIREBASE_API_KEY;
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCB-oz8W7o4OUDcjSVac2hIEVGBr1YSKeo",
+    apiKey: firebaseApiKey,
     authDomain: "gradebuddy-hoohacks.firebaseapp.com",
     projectId: "gradebuddy-hoohacks",
     storageBucket: "gradebuddy-hoohacks.appspot.com",
@@ -11,7 +16,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
 const db = getFirestore(app);
 
 async function getAssignmentWithQuestions(assignmentId) {
@@ -33,6 +37,7 @@ async function getAssignmentWithQuestions(assignmentId) {
     questionsSnapshot.forEach(doc => {
         let questionData = doc.data();
         let question = {
+            id: doc.id,
             answer: questionData.answer,
             maxScore: questionData.maxScore,
             question: questionData.question,
