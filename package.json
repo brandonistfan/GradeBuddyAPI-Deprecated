@@ -1,7 +1,19 @@
 {
-  "name": "GradeBuddyAPI",
+  "name": "gradebuddyapi",
   "version": "1.0.0",
-  "dependencies": {
-    
-  }
+  "description": "��#\u0000 \u0000G\u0000r\u0000a\u0000d\u0000e\u0000B\u0000u\u0000d\u0000d\u0000y\u0000A\u0000P\u0000I\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandonistfan/GradeBuddyAPI.git"
+  },
+  "author": "Brandon Istfan, Darren Amona, Krish Mehta, Phong Le",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brandonistfan/GradeBuddyAPI/issues"
+  },
+  "homepage": "https://github.com/brandonistfan/GradeBuddyAPI#readme"
 }
