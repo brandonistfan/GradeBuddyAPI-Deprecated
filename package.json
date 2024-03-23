@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/brandonistfan/GradeBuddyAPI/issues"
   },
-  "homepage": "https://github.com/brandonistfan/GradeBuddyAPI#readme"
+  "homepage": "https://github.com/brandonistfan/GradeBuddyAPI#readme",
+  "dependencies": {
+    "firebase-admin": "^12.0.0",
+  }
 }
