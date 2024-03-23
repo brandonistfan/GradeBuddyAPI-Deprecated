@@ -16,15 +16,13 @@ async function main(assignmentID) {
             const maxScore = question.maxScore;
             const maxTokens = maxScore.toString().length;
 
-
             let prompt = `Given the answer below and based on the provided rubric, evaluate the answer concisely and provide a numerical score out of ${maxScore}. Your response, including this instruction, must not exceed ${maxTokens} tokens in total. Ensure your evaluation directly applies the criteria from the rubric.
 
             Answer: ${answer}
             
             Rubric: ${rubric}
             
-            Provide solely a numerical score based on the rubric. The value returned should only be a number. If the characters are less than ${maxTokens}, it is fine.`;
-
+            Based on the following rubric, return a numerical score as the output. Please return the evaluation result as a number, without any additional text or explanation.`;
             const completion = await openai.chat.completions.create({
                 messages: [{ role: "system", content: prompt }],
                 model: "gpt-4-1106-preview",
