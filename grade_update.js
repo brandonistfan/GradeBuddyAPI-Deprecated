@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { config } from 'dotenv';
 import { getAssignmentWithQuestions } from './read_data.js';
+import {updateQuestionScore} from "./update_score.js";
 
 config();
 const OpenaiApiKey = process.env.GRADEBUDDY_OPENAI_API_KEY;
@@ -11,7 +12,6 @@ async function main(assignmentID) {
 
     for (const question of assignment.questions){
         try {
-            console.log(question);
             const answer =  question.answer;
             const rubric = question.rubric;
             const maxScore = question.maxScore;
@@ -31,9 +31,10 @@ async function main(assignmentID) {
                 temperature: 0,
             });
 
-            console.log(completion.choices[0].message['content']);
+            const newScore = completion.choices[0].message['content']
 
-
+            console.log(newScore)
+            // updateQuestionScore(assignmentID, );
             // call update_score
         } catch (error) {
             // send error to firebase database for specific question

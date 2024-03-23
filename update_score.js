@@ -1,5 +1,5 @@
-const firebase = require("firebase/app");
-require("firebase/firestore");
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, doc, getDoc, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCB-oz8W7o4OUDcjSVac2hIEVGBr1YSKeo",
@@ -10,9 +10,9 @@ const firebaseConfig = {
     appId: "1:843512705843:web:1ac2927d3c682d828bc446"
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+const db = getFirestore(app);
 
 async function updateQuestionScore(assignmentId, questionId, newScore) {
     const questionRef = db.collection('assignments').doc(assignmentId).collection('questions').doc(questionId);
@@ -26,3 +26,5 @@ async function updateQuestionScore(assignmentId, questionId, newScore) {
         console.error('Error updating question score:', error);
     }
 }
+
+export { updateQuestionScore };
