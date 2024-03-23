@@ -65,6 +65,8 @@ async function getAssignmentWithQuestions(assignmentId) {
     return assignment;
 }
 
+module.exports = { getAssignmentWithQuestions };
+
 // Example usage:
 // Note: You need to replace 'your-assignment-id' with the actual assignment document ID
 getAssignmentWithQuestions('your-assignment-id').then(assignment => {
