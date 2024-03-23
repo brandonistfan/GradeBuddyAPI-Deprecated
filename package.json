@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/brandonistfan/GradeBuddyAPI#readme",
   "dependencies": {
-    "firebase-admin": "^12.0.0",
+    "firebase-admin": "^12.0.0"
   }
 }
