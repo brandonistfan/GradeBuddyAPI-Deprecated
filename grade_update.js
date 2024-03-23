@@ -11,6 +11,7 @@ async function main(assignmentID) {
 
     for (const question of assignment.questions){
         try {
+            console.log(question);
             const answer =  question.answer;
             const rubric = question.rubric;
             const maxScore = question.maxScore;
@@ -31,6 +32,7 @@ async function main(assignmentID) {
             });
 
             console.log(completion.choices[0].message['content']);
+
 
             // call update_score
         } catch (error) {
