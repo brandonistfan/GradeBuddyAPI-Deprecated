@@ -16,13 +16,14 @@ async function main(assignmentID) {
             const maxScore = question.maxScore;
             const maxTokens = maxScore.toString().length;
 
+
             let prompt = `Given the answer below and based on the provided rubric, evaluate the answer concisely and provide a numerical score out of ${maxScore}. Your response, including this instruction, must not exceed ${maxTokens} tokens in total. Ensure your evaluation directly applies the criteria from the rubric.
 
             Answer: ${answer}
             
             Rubric: ${rubric}
             
-            Provide your score based on the rubric.`;
+            Provide solely a numerical score based on the rubric. The value returned should only be a number. If the characters are less than ${maxTokens}, it is fine.`;
 
             const completion = await openai.chat.completions.create({
                 messages: [{ role: "system", content: prompt }],
@@ -38,7 +39,7 @@ async function main(assignmentID) {
             // send error to firebase database for specific question
         }
     }
-    return 0;
 }
 
 main("REYUvIEh0Mc2zEjdvYRs");
+// main("2");
