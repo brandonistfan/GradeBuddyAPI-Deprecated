@@ -1,9 +1,10 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const {gradeUpdate} = require("../grade_update");
+import * as functions from 'firebase-functions';
+import admin from 'firebase-admin';
+import {gradeUpdate} from "../grade_update.js";
+
 admin.initializeApp();
 
-exports.processNewAssignment = functions.firestore
+export const gradeAssignments = functions.firestore
     .document('assignments/{assignmentId}')
     .onWrite(async (snap, context) => {
         const assignmentID = context.params.assignmentId;
