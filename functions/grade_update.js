@@ -1,8 +1,12 @@
 import OpenAI from "openai";
 import {getAssignmentWithQuestions} from './read_data.js';
 import {updateQuestionScore} from "./update_score.js";
+import {config} from 'dotenv';
 
-const openai = new OpenAI({apiKey: "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"});
+config();
+const openaiApiKey = process.env.GRADEBUDDY_OPENAI_API_KEY;
+
+const openai = new OpenAI({apiKey: openaiApiKey});
 
 async function gradeUpdate(assignmentID) {
     const assignment = await getAssignmentWithQuestions(assignmentID);

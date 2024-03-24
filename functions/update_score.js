@@ -4,8 +4,10 @@ import {config} from 'dotenv';
 
 config();
 
+const firebaseApiKey = process.env.MY_FIREBASE_API_KEY;
+
 const firebaseConfig = {
-    apiKey: "AIzaSyCB-oz8W7o4OUDcjSVac2hIEVGBr1YSKeo",
+    apiKey: firebaseApiKey,
     authDomain: "gradebuddy-hoohacks.firebaseapp.com",
     projectId: "gradebuddy-hoohacks",
     storageBucket: "gradebuddy-hoohacks.appspot.com",
