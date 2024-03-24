@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app";
-import {getFirestore, collection, doc, getDoc, getDocs} from "firebase/firestore";
+import {getFirestore, doc, getDoc} from "firebase/firestore";
 import {config} from 'dotenv';
 
 config();
@@ -18,36 +18,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function getAssignmentWithQuestions(assignmentId) {
-    let assignment = {
-        id: assignmentId,
-        questions: []
-    };
+async function getQuestion(assignmentId, questionId) {
+    const questionRef = doc(db, 'assignments', assignmentId, 'questions', questionId);
+    const questionSnapshot = await getDoc(questionRef);
 
-    const assignmentRef = doc(db, 'assignments', assignmentId);
-    await getDoc(assignmentRef);
-    const questionsRef = collection(assignmentRef, 'questions');
-    const questionsSnapshot = await getDocs(questionsRef);
-
-    if (questionsSnapshot.empty) {
-        console.log('No questions found in this assignment.');
-        return assignment;
+    if (!questionSnapshot.exists()) {
+        console.log('No such question found!');
+        return null;
     }
 
-    questionsSnapshot.forEach(doc => {
-        let questionData = doc.data();
-        let question = {
-            id: doc.id,
-            answer: questionData.answer,
-            maxScore: questionData.maxScore,
-            question: questionData.question,
-            rubric: questionData.rubric,
-            score: questionData.score
-        };
-        assignment.questions.push(question);
-    });
-
-    return assignment;
+    let questionData = questionSnapshot.data();
+    return {
+        id: questionSnapshot.id,
+        answer: questionData.answer,
+        maxScore: questionData.maxScore,
+        question: questionData.question,
+        rubric: questionData.rubric,
+        score: questionData.score
+    };
 }
 
-export {getAssignmentWithQuestions};
+export {getQuestion};
