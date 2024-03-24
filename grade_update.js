@@ -7,10 +7,8 @@ config();
 const openaiApiKey = process.env.GRADEBUDDY_OPENAI_API_KEY;
 const openai = new OpenAI({apiKey: openaiApiKey});
 
-async function gradeUpdate(assignmentID, questionID) {
+async function gradeUpdate(assignmentID, questionID, failCounter) {
     const question = await getQuestion(assignmentID, questionID);
-
-    let failCounter = 0;
 
     const curScore = question.score;
 
@@ -42,7 +40,7 @@ async function gradeUpdate(assignmentID, questionID) {
         } catch (error) {
             if (failCounter <= 10) {
                 failCounter++;
-                await gradeUpdateQuestion(assignmentID, questionID);
+                await gradeUpdate(assignmentID, questionID, failCounter);
             }
         }
     }
