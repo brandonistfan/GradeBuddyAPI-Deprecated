@@ -1,7 +1,5 @@
-import {gradeUpdate} from "./grade_update.js";
+import { gradeUpdate } from "./grade_update.js";
 
-async function main(assignmentID, questionID) {
-    let failCounter = 0;
-    await gradeUpdate(assignmentID, questionID, failCounter);
-    process.exit();
-}
+
+await gradeUpdate("5o9xUQFh4Pi6WWCpmHx8");
+process.exit();

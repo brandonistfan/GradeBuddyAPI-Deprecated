@@ -20,7 +20,6 @@ const db = getFirestore(app);
 
 async function updateQuestionScore(assignmentId, questionId, newScore, updateFailCounter) {
     const questionRef = doc(db, 'assignments', assignmentId, 'questions', questionId);
-
     let score = null;
     if (newScore !== -1) {
         score = Number(newScore);
