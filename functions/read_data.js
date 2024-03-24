@@ -1,13 +1,8 @@
 import {initializeApp} from "firebase/app";
 import {getFirestore, collection, doc, getDoc, getDocs} from "firebase/firestore";
-import {config} from 'dotenv';
-
-config();
-
-const firebaseApiKey = process.env.FIREBASE_API_KEY;
 
 const firebaseConfig = {
-    apiKey: firebaseApiKey,
+    apiKey: "AIzaSyCB-oz8W7o4OUDcjSVac2hIEVGBr1YSKeo",
     authDomain: "gradebuddy-hoohacks.firebaseapp.com",
     projectId: "gradebuddy-hoohacks",
     storageBucket: "gradebuddy-hoohacks.appspot.com",
