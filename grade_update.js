@@ -36,7 +36,9 @@ async function gradeUpdate(assignmentID, questionID, failCounter) {
 
             const newScore = completion.choices[0].message['content'];
 
-            await updateQuestionScore(assignmentID, questionID, newScore);
+            let updateFailCounter = 0;
+
+            await updateQuestionScore(assignmentID, questionID, newScore, updateFailCounter);
         } catch (error) {
             if (failCounter <= 10) {
                 failCounter++;

@@ -18,7 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function updateQuestionScore(assignmentId, questionId, newScore) {
+async function updateQuestionScore(assignmentId, questionId, newScore, updateFailCounter) {
     const questionRef = doc(db, 'assignments', assignmentId, 'questions', questionId);
 
     let score = null;
@@ -31,7 +31,8 @@ async function updateQuestionScore(assignmentId, questionId, newScore) {
             score: score
         });
     } catch (error) {
-
+        updateFailCounter++;
+        await updateQuestionScore(assignmentId, questionId, newScore, updateFailCounter);
     }
 }
 
