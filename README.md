@@ -1,6 +1,8 @@
-# GradeBuddy API
+# GradeBuddy API (Deprecated)
 
 **OVERVIEW**:  
+(Deprecated version of GradeBuddy. This version is the API for the hackathon project, but it has since been replaced by a more advanced implementation.)
+
 This repository contains the API that interacts with Firebase and OpenAI LLM, powering the GradeBuddy application. GradeBuddy is an educational assessment tool that instantly grades student responses (including free-response and essays), helping faculty save time and provide timely feedback to students.
 
 **DEMO VIDEO**:  
